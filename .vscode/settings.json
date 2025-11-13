@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/vendor/**": true,
+        "**/storage/logs/**": true,
+        "**/storage/framework/**": true,
+        "**/public/build/**": true,
+        "**/public/dist/**": true,
+    }
+}
