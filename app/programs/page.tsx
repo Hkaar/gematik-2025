@@ -1,10 +1,15 @@
-"use client"
-
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { BookOpen, Code, Zap, Users, Briefcase, Palette } from "lucide-react"
+
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Programs | GEMPAR",
+  description: "Programs provided by us to empower youths for a new age",
+};
 
 export default function ProgramsPage() {
   const programs = [

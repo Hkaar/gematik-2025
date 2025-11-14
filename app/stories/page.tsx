@@ -1,8 +1,13 @@
-"use client"
-
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Card } from "@/components/ui/card"
+
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Stories | GEMPAR",
+  description: "Hear the stories that our alumni go through when they joined us!",
+};
 
 export default function StoriesPage() {
   const stories = [
