@@ -4,8 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export default function Header() {
+interface Props {
+  active: string
+}
+
+export default function Header({active = ""}: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
@@ -20,7 +25,6 @@ export default function Header() {
       <nav className="bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
             <Link
               href="/"
               className="flex items-center gap-2 font-bold text-lg"
@@ -33,13 +37,12 @@ export default function Header() {
               <span className="text-foreground">GEMPAR</span>
             </Link>
 
-            {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-8">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-foreground hover:text-primary transition-colors"
+                  className={cn("text-foreground", active == link.href ? "text-primary" : "hover:text-primary transition-colors")}
                 >
                   {link.label}
                 </Link>
@@ -52,7 +55,6 @@ export default function Header() {
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               className="md:hidden"
               onClick={() => setIsOpen(!isOpen)}
@@ -62,7 +64,6 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Menu */}
           {isOpen && (
             <div className="md:hidden pb-4 space-y-2">
               {links.map((link) => (

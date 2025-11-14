@@ -63,7 +63,7 @@ export default function StoriesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header active="/stories" />
 
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">

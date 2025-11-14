@@ -59,7 +59,7 @@ export default function ResourcesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header active="/resources" />
 
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
