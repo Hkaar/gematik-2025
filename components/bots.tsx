@@ -26,8 +26,23 @@ const Bot = () => {
 
   const handleSendMessage = () => {
     if (userInput.trim()) {
+      // Add user's message to the chat
       setMessages((prev) => [...prev, `You: ${userInput}`]);
-      setMessages((prev) => [...prev, "Bot: How can I assist you?"]);
+
+      // Simple predefined responses
+      let botResponse = "Sorry, I don't understand that.";
+      if (userInput.toLowerCase().includes("hello")) {
+        botResponse = "Hello! How can I assist you today?";
+      } else if (userInput.toLowerCase().includes("help")) {
+        botResponse = "Sure! Let me know what you need help with.\n1. Account\n2. Website\n3. Services";
+      } else if (userInput.toLowerCase().includes("website")) {
+        botResponse = "This website is designed to provide helpful tools and resources.";
+      }
+
+      // Add the bot's response to the chat
+      setMessages((prev) => [...prev, `Bot: ${botResponse}`]);
+
+      // Clear the input field
       setUserInput("");
     }
   };
