@@ -1,12 +1,13 @@
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import { Card } from "@/components/ui/card"
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
-import { Metadata } from "next"
+import { Metadata } from "next";
+import StoryCard from "@/components/story-card";
 
 export const metadata: Metadata = {
   title: "Stories | GEMPAR",
-  description: "Hear the stories that our alumni go through when they joined us!",
+  description:
+    "Hear the stories that our alumni go through when they joined us!",
 };
 
 export default function StoriesPage() {
@@ -59,7 +60,7 @@ export default function StoriesPage() {
       image: "📊",
       achievement: "VP of Product",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -68,26 +69,26 @@ export default function StoriesPage() {
       <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance">Success Stories</h1>
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance">
+              Success Stories
+            </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Real people, real achievements. Discover how our community members are making waves.
+              Real people, real achievements. Discover how our community members
+              are making waves.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {stories.map((story, i) => (
-              <Card
+              <StoryCard
                 key={i}
-                className="p-8 bg-card border-border hover:border-accent hover:shadow-xl transition-all duration-300"
+                name={story.name}
+                role={story.role}
+                image="https://placehold.co/600x400"
+                achievement={story.achievement}
               >
-                <div className="text-5xl mb-4">{story.image}</div>
-                <h3 className="text-2xl font-bold text-foreground mb-1">{story.name}</h3>
-                <p className="text-primary font-semibold mb-4">{story.role}</p>
-                <p className="text-muted-foreground mb-6 leading-relaxed">{story.story}</p>
-                <div className="pt-4 border-t border-border">
-                  <p className="text-sm text-accent font-bold">{story.achievement}</p>
-                </div>
-              </Card>
+                {story.story}
+              </StoryCard>
             ))}
           </div>
         </div>
@@ -95,5 +96,5 @@ export default function StoriesPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
