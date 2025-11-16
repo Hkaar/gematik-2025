@@ -34,9 +34,11 @@ const Bot = () => {
       if (userInput.toLowerCase().includes("hello")) {
         botResponse = "Hello! How can I assist you today?";
       } else if (userInput.toLowerCase().includes("help")) {
-        botResponse = "Sure! Let me know what you need help with.\n1. Account\n2. Website\n3. Services";
+        botResponse =
+          "Sure! Let me know what you need help with.\n1. Account\n2. Website\n3. Services";
       } else if (userInput.toLowerCase().includes("website")) {
-        botResponse = "This website is designed to provide helpful tools and resources.";
+        botResponse =
+          "This website is designed to provide helpful tools and resources.";
       }
 
       // Add the bot's response to the chat
@@ -45,6 +47,35 @@ const Bot = () => {
       // Clear the input field
       setUserInput("");
     }
+  };
+
+  const handleTemplateMessage = (templateMessage: string) => {
+    // Add the template message to the chat
+    setMessages((prev) => [...prev, `You: ${templateMessage}`]);
+
+    // Add "Bot is typing..." to the chat
+    setMessages((prev) => [...prev, "Bot is typing..."]);
+
+    // Generate bot response after a delay
+    setTimeout(() => {
+      let botResponse = "Sorry, I don't understand that.";
+      if (templateMessage.toLowerCase().includes("hello")) {
+        botResponse = "Hello! How can I assist you today?";
+      } else if (templateMessage.toLowerCase().includes("help")) {
+        botResponse =
+          "Sure! Let me know what you need help with.\n1. Account\n2. Website\n3. Services";
+      } else if (templateMessage.toLowerCase().includes("website")) {
+        botResponse =
+          "This website is designed to provide helpful tools and resources.";
+      }
+
+      // Replace "Bot is typing..." with the actual bot response
+      setMessages((prev) => {
+        const updatedMessages = [...prev];
+        updatedMessages[updatedMessages.length - 1] = `Bot: ${botResponse}`;
+        return updatedMessages;
+      });
+    }, 1500); // Delay of 1.5 seconds
   };
 
   return (
@@ -58,14 +89,10 @@ const Bot = () => {
 
       {/* Bot Icon */}
       <div
-        className="w-12 h-12 bg-transparent rounded-full flex items-center justify-center cursor-pointer shadow-lg"
+        className="w-12 h-12 bg-white rounded-full flex items-center justify-center cursor-pointer shadow-lg"
         onClick={handleBotClick}
       >
-        <img
-          src="/bot-icon.png"
-          alt="Chat Bot"
-          className="w-8 h-8"
-        />
+        <img src="/bot-icon.png" alt="Chat Bot" className="w-8 h-8" />
       </div>
 
       {/* Chat Box */}
@@ -78,6 +105,29 @@ const Bot = () => {
               </p>
             ))}
           </div>
+
+          {/* Template Chat Buttons */}
+          <div className="flex gap-2 mb-2">
+            <button
+              onClick={() => handleTemplateMessage("What is this website for?")}
+              className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm"
+            >
+              Website
+            </button>
+            <button
+              onClick={() => handleTemplateMessage("Can you help me?")}
+              className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm"
+            >
+              Help
+            </button>
+            <button
+              onClick={() => handleTemplateMessage("Hello")}
+              className="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm"
+            >
+              Hello
+            </button>
+          </div>
+
           <div className="flex items-center">
             <input
               type="text"
