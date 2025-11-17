@@ -6,8 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
 import { toast } from "sonner";
 
+import { useLanguage } from "@/contexts/language-context";
+import { translations } from "@/lib/i18n";
+
 export function JoinForm() {
   const [email, setEmail] = useState("");
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,18 +27,21 @@ export function JoinForm() {
       return;
     }
 
-    // Success!
     toast.success("Welcome! 🎉", {
-      description: "Check your email for confirmation and next steps to get started.",
+      description:
+        "Check your email for confirmation and next steps to get started.",
     });
-    
+
     setEmail("");
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-3">
+        <label
+          htmlFor="email"
+          className="block text-sm font-semibold text-foreground mb-3"
+        >
           Email Address
         </label>
         <div className="relative">
@@ -53,11 +61,11 @@ export function JoinForm() {
         type="submit"
         className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-3 rounded-lg font-semibold transition"
       >
-        Join the Movement
+        {t.join.joinButton}
       </Button>
 
       <p className="text-xs text-center text-muted-foreground">
-        We respect your privacy. Unsubscribe anytime. No spam, we promise.
+        {t.join.privacy}
       </p>
     </form>
   );

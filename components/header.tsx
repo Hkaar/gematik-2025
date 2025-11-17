@@ -1,12 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/contexts/language-context";
 import Link from "next/link";
-import { ArrowUpRightIcon, LogInIcon, Menu, X } from "lucide-react";
+import { GlobeIcon, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 import Logo from "@/public/images/logo.png";
+import { translations } from "@/lib/i18n";
 
 interface Props {
   active: string;
@@ -14,12 +22,15 @@ interface Props {
 
 export default function Header({ active = "" }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+
+  const t = translations[language];
 
   const links = [
-    { href: "/", label: "Home" },
-    { href: "/programs", label: "Programs" },
-    { href: "/stories", label: "Stories" },
-    { href: "/resources", label: "Resources" },
+    { href: "/", label: t.nav.home },
+    { href: "/programs", label: t.nav.programs },
+    { href: "/stories", label: t.nav.stories },
+    { href: "/resources", label: t.nav.resources },
   ];
 
   return (
@@ -52,12 +63,59 @@ export default function Header({ active = "" }: Props) {
                   {link.label}
                 </Link>
               ))}
-              <Button
-                disabled={active == "/join" ? true : false}
-                className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center"
-              >
-                <Link href="/join">Join Us</Link>
-              </Button>
+              <div className="flex items-center gap-2.5">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant={"ghost"}
+                      className="hover:bg-muted/50 hover:text-muted-foreground"
+                    >
+                      <GlobeIcon size={14} />
+                      <span className="text-sm font-medium uppercase">
+                        {language}
+                      </span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem asChild>
+                      <Button
+                        variant={"ghost"}
+                        onClick={() => {
+                          setLanguage("en");
+                        }}
+                        className={`w-full text-left px-4 py-2 transition-colors ${
+                          language === "en"
+                            ? "text-primary font-semibold"
+                            : "text-foreground"
+                        }`}
+                      >
+                        English
+                      </Button>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Button
+                        variant={"ghost"}
+                        onClick={() => {
+                          setLanguage("id");
+                        }}
+                        className={`w-full text-left px-4 py-2 transition-colors ${
+                          language === "id"
+                            ? "text-primary font-semibold"
+                            : "text-foreground"
+                        }`}
+                      >
+                        Bahasa Indonesia
+                      </Button>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <Button
+                  disabled={active == "/join" ? true : false}
+                  className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center"
+                >
+                  <Link href="/join">{t.nav.joinUs}</Link>
+                </Button>
+              </div>
             </div>
 
             <button
@@ -86,12 +144,57 @@ export default function Header({ active = "" }: Props) {
                   {link.label}
                 </Link>
               ))}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant={"ghost"}
+                    className="hover:bg-muted/50 hover:text-muted-foreground"
+                  >
+                    <GlobeIcon size={14} />
+                    <span className="text-sm font-medium uppercase">
+                      {language}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem asChild>
+                    <Button
+                      variant={"ghost"}
+                      onClick={() => {
+                        setLanguage("en");
+                      }}
+                      className={`w-full text-left px-4 py-2 transition-colors ${
+                        language === "en"
+                          ? "text-primary font-semibold"
+                          : "text-foreground"
+                      }`}
+                    >
+                      English
+                    </Button>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Button
+                      variant={"ghost"}
+                      onClick={() => {
+                        setLanguage("id");
+                      }}
+                      className={`w-full text-left px-4 py-2 transition-colors ${
+                        language === "id"
+                          ? "text-primary font-semibold"
+                          : "text-foreground"
+                      }`}
+                    >
+                      Bahasa Indonesia
+                    </Button>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button
                 disabled={active == "/join" ? true : false}
                 className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 <Link href="/join" onClick={() => setIsOpen(false)}>
-                  Join Us
+                  {t.nav.joinUs}
                 </Link>
               </Button>
             </div>

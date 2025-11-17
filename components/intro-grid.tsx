@@ -13,7 +13,13 @@ import SlideDown from "./animation/slide-down";
 import SlideUp from "./animation/slide-up";
 import Link from "next/link";
 
+import { useLanguage } from "@/contexts/language-context";
+import { translations } from "@/lib/i18n";
+
 export default function IntroGrid() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[300px]">
@@ -24,11 +30,10 @@ export default function IntroGrid() {
           >
             <div className="flex-1 size-full flex flex-col justify-end gap-2.5 bg-neutral-800/70 rounded-2xl px-7 py-6">
               <h3 className="text-2xl font-bold text-white">
-                Global Opportunities
+                {t.intro.global.title}
               </h3>
               <p className="text-muted leading-relaxed">
-                Access opportunities that transcend borders and open doors you
-                never knew existed.
+                {t.intro.global.description}
               </p>
             </div>
           </div>
@@ -40,9 +45,11 @@ export default function IntroGrid() {
             style={{ backgroundImage: `url(${InnovationImage.src})` }}
           >
             <div className="flex-1 size-full px-7 py-6 bg-neutral-800/70 flex flex-col justify-end gap-2.5 rounded-2xl">
-              <h3 className="text-2xl font-bold text-white">Innovation</h3>
+              <h3 className="text-2xl font-bold text-white">
+                {t.intro.innovation.title}
+              </h3>
               <p className="text-muted leading-relaxed">
-                Learn cutting-edge skills and stay ahead of trends.
+                {t.intro.innovation.description}
               </p>
             </div>
           </div>
@@ -56,9 +63,11 @@ export default function IntroGrid() {
             }}
           >
             <div className="flex-1 size-full px-7 py-6 flex flex-col justify-end gap-2.5 rounded-2xl bg-neutral-800/70">
-              <h3 className="text-2xl font-bold text-white">Community</h3>
+              <h3 className="text-2xl font-bold text-white">
+                {t.intro.community.title}
+              </h3>
               <p className="text-muted leading-relaxed">
-                Be part of a supportive ecosystem of changemakers.
+                {t.intro.community.description}
               </p>
             </div>
           </div>
@@ -77,11 +86,10 @@ export default function IntroGrid() {
             <div className="flex-1 size-full px-7 py-6 flex flex-col justify-end gap-5 rounded-2xl bg-neutral-800/70">
               <div className="flex flex-col gap-2.5">
                 <h3 className="text-2xl font-bold text-white">
-                  Empowerment Through Action
+                  {t.intro.empowerment.title}
                 </h3>
                 <p className="text-muted leading-relaxed">
-                  We believe the best way to empower youth is through real-world
-                  experience, mentorship, and collaboration.
+                  {t.intro.empowerment.description}
                 </p>
               </div>
               <Link
@@ -91,7 +99,7 @@ export default function IntroGrid() {
                   "w-fit group-hover:gap-2 flex items-center gap-1 transition-all duration-300"
                 )}
               >
-                Explore more
+                {t.intro.empowerment.exploreMore}
                 <ArrowUpRightIcon size={14} />
               </Link>
             </div>
@@ -104,13 +112,10 @@ export default function IntroGrid() {
         >
           <div className="flex-1 flex flex-col justify-center p-8 rounded-2xl bg-primary/10 border-4 border-dashed border-primary/20 hover:border-primary hover:shadow-lg transition-all duration-300">
             <h3 className="text-2xl font-bold text-foreground mb-3">
-              Why This Matters
+              {t.intro.whyMatters.title}
             </h3>
             <p className="text-muted-foreground leading-relaxed">
-              In an era of rapid disruption, youth equipped with adaptability,
-              creativity, and purpose will lead the way. Our mission is to
-              provide you with the tools, network, and confidence to thrive in
-              whatever future you imagine.
+              {t.intro.whyMatters.description}
             </p>
           </div>
         </SlideUp>

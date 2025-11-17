@@ -9,7 +9,13 @@ import "swiper/css/pagination";
 
 import TestimonyCard from "@/components/testimony-card";
 
+import { useLanguage } from "@/contexts/language-context";
+import { translations } from "@/lib/i18n";
+
 export default function Testimonials() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const testimonials = [
     {
       quote:
@@ -60,10 +66,10 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-            Hear from Our Community
+            {t.testimonials.title}
           </h2>
           <p className="text-lg text-muted-foreground">
-            Real stories from youth who are making a real impact
+            {t.testimonials.subtitle}
           </p>
         </div>
 
