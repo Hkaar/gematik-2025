@@ -11,13 +11,12 @@ import { ArrowUpRightIcon } from "lucide-react";
 import SlideRight from "./animation/slide-right";
 import SlideDown from "./animation/slide-down";
 import SlideUp from "./animation/slide-up";
-import SlideLeft from "./animation/slide-left";
 import Link from "next/link";
 
 export default function IntroGrid() {
   return (
     <>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[250px]">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[300px]">
         <SlideRight delay={1.3} className="lg:col-span-2 h-full flex">
           <div
             className="flex flex-1 rounded-2xl bg-card border border-border hover:border-accent hover:shadow-lg transition-all duration-300 bg-cover bg-center bg-no-repeat"
@@ -65,7 +64,7 @@ export default function IntroGrid() {
           </div>
         </SlideUp>
 
-        <SlideLeft
+        <SlideRight
           delay={1.9}
           className="lg:col-span-2 lg:row-span-2 flex h-full"
         >
@@ -97,7 +96,7 @@ export default function IntroGrid() {
               </Link>
             </div>
           </div>
-        </SlideLeft>
+        </SlideRight>
 
         <SlideUp
           delay={3.1}

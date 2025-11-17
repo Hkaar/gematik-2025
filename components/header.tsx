@@ -23,7 +23,7 @@ export default function Header({ active = "" }: Props) {
   ];
 
   return (
-    <header className="sticky bg-background border top-4 w-4/5 mx-auto z-50 shadow-xl rounded-2xl">
+    <header className="sticky bg-background border top-4 w-11/12 xl:w-4/5 mx-auto z-50 shadow-xl rounded-2xl">
       <nav className="rounded-2xl">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -75,14 +75,19 @@ export default function Header({ active = "" }: Props) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block px-4 py-2 text-foreground hover:bg-muted rounded-md"
+                  className={cn(
+                    "block px-4 py-2 text-foreground hover:bg-muted rounded-md",
+                    active == link.href
+                      ? "text-primary bg-muted/40"
+                      : "hover:text-primary transition-colors"
+                  )}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
               <Button
-                asChild
+                disabled={active == "/join" ? true : false}
                 className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
               >
                 <Link href="/join" onClick={() => setIsOpen(false)}>
