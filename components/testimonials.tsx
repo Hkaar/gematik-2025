@@ -1,30 +1,57 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import TestimonyCard from "./testimony-card";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+import TestimonyCard from "@/components/testimony-card";
 
 export default function Testimonials() {
   const testimonials = [
     {
       quote:
-        "This program completely transformed how I think about my career. The mentorship alone was worth its weight in gold.",
-      author: "Sarah Chen",
-      role: "Product Designer",
-      image: "👩‍💼",
-    },
-    {
-      quote:
         "I came in uncertain about my path. Now I'm confident, skilled, and ready to make an impact in my field.",
       author: "Marcus Johnson",
       role: "Tech Entrepreneur",
-      image: "👨‍💻",
     },
     {
       quote:
         "The resources and community support here are unmatched. I feel part of something bigger than myself.",
       author: "Priya Patel",
       role: "Social Impact Leader",
-      image: "👩‍🔬",
+    },
+    {
+      quote:
+        "The workshops on public speaking were incredible. I've gone from nervous to confident in just a few weeks.",
+      author: "David Kim",
+      role: "Non-Profit Coordinator",
+    },
+    {
+      quote:
+        "Connecting with peers from such diverse backgrounds has broadened my perspective more than I ever imagined.",
+      author: "Aisha Al-Jamil",
+      role: "University Student",
+    },
+    {
+      quote:
+        "I never realized my potential as a leader until this program. It's been a life-changing experience.",
+      author: "Emily White",
+      role: "Community Organizer",
+    },
+    {
+      quote:
+        "The one-on-one coaching helped me navigate complex challenges and define my personal brand.",
+      author: "Kenji Tanaka",
+      role: "Freelance Journalist",
+    },
+    {
+      quote:
+        "A truly inspiring community. Every single person is dedicated to making a positive change in the world.",
+      author: "Fatima Bello",
+      role: "Policy Analyst",
     },
   ];
 
@@ -40,18 +67,46 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          navigation={true}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          spaceBetween={30}
+          centeredSlides={true}
+          loop={true}
+          breakpoints={{
+            768: {
+              slidesPerView: 2.5,
+            },
+            1024: {
+              slidesPerView: 3.5,
+            },
+          }}
+          className="w-full pb-16"
+        >
           {testimonials.map((testimonial, i) => (
-            <TestimonyCard
-              name={testimonial.author}
-              role={testimonial.role}
-              profileImage="https://placehold.co/600x400"
-              key={i}
-            >
-              {testimonial.quote}
-            </TestimonyCard>
+            <SwiperSlide key={i} className="pb-4 h-auto z-0 mb-4">
+              <TestimonyCard
+                className="h-full"
+                name={testimonial.author}
+                role={testimonial.role}
+                profileImage={`https://placehold.co/100x100/EBF4FF/0F172A?text=${testimonial.author.charAt(
+                  0
+                )}`}
+              >
+                {testimonial.quote}
+              </TestimonyCard>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );

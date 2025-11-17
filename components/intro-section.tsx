@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import IntroGrid from "./intro-grid"
+import IntroGrid from "./intro-grid";
 
 export default function IntroSection() {
   return (
@@ -11,12 +11,13 @@ export default function IntroSection() {
             Why Young Voices Matter Now More Than Ever
           </h2>
           <p className="text-lg text-muted-foreground">
-            The world is changing faster than ever. We're here to help you navigate it.
+            The world is changing faster than ever. We're here to help you
+            navigate it.
           </p>
         </div>
 
-        <IntroGrid></IntroGrid>
+        <IntroGrid />
       </div>
     </section>
-  )
+  );
 }

@@ -16,7 +16,7 @@ export default function StoryCard({
   children,
 }: Props) {
   return (
-    <Card className="p-8 bg-card border-border hover:border-accent hover:shadow-xl transition-all duration-300">
+    <Card className="p-8 bg-card border-border border-2 hover:border-accent hover:shadow-xl transition-all duration-300 hover:-skew-1">
       <CardContent>
         <div className="flex items-center gap-3.5 mb-4">
           <img

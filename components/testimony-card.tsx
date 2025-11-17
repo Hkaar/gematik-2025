@@ -1,10 +1,12 @@
 import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 interface Props {
   children: React.ReactNode;
   profileImage: string;
   name: string;
   role: string;
+  className?: string;
 }
 
 export default function TestimonyCard({
@@ -12,11 +14,17 @@ export default function TestimonyCard({
   name,
   role,
   children,
+  className,
 }: Props) {
   return (
-    <Card className="p-8 bg-card border-border hover:border-accent hover:shadow-lg transition-all duration-300">
+    <Card
+      className={cn(
+        "p-8 bg-card border-border hover:border-accent hover:shadow-lg transition-all duration-300",
+        className
+      )}
+    >
       <div className="mb-6 flex-1 flex flex-col justify-center">
-        <p className="text-muted-foreground text-lg leading-relaxed italic">
+        <p className="text-muted-foreground text-lg leading-relaxed italic line-clamp-4">
           "{children}"
         </p>
       </div>
