@@ -84,7 +84,9 @@ export default function StoriesPage() {
                 key={i}
                 name={story.name}
                 role={story.role}
-                image="https://placehold.co/600x400"
+                image={`https://placehold.co/100x100/EBF4FF/0F172A?text=${story.name.charAt(
+                  0
+                )}`}
                 achievement={story.achievement}
               >
                 {story.story}
