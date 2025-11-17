@@ -2,15 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRightIcon, LogInIcon, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+import Logo from "@/public/images/logo.png";
+
 interface Props {
-  active: string
+  active: string;
 }
 
-export default function Header({active = ""}: Props) {
+export default function Header({ active = "" }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
@@ -21,20 +23,18 @@ export default function Header({active = ""}: Props) {
   ];
 
   return (
-    <header className="sticky top-0 z-50">
-      <nav className="bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky bg-background border top-4 w-4/5 mx-auto z-50 shadow-xl rounded-2xl">
+      <nav className="rounded-2xl">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link
               href="/"
-              className="flex items-center gap-2 font-bold text-lg"
+              className="flex items-center gap-1.5 font-bold text-lg"
             >
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground text-sm font-bold">
-                  GP
-                </span>
-              </div>
-              <span className="text-foreground">GEMPAR</span>
+              <img src={Logo.src} className="size-12" />
+              <span className="text-foreground text-xl hidden xl:block">
+                GEMPAR
+              </span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
@@ -42,14 +42,19 @@ export default function Header({active = ""}: Props) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={cn("text-foreground", active == link.href ? "text-primary" : "hover:text-primary transition-colors")}
+                  className={cn(
+                    "text-foreground",
+                    active == link.href
+                      ? "text-primary border-b-2 border-primary"
+                      : "hover:text-primary transition-colors"
+                  )}
                 >
                   {link.label}
                 </Link>
               ))}
               <Button
-                asChild
-                className="bg-accent text-accent-foreground hover:bg-accent/90"
+                disabled={active == "/join" ? true : false}
+                className="bg-accent text-accent-foreground hover:bg-accent/90 flex items-center"
               >
                 <Link href="/join">Join Us</Link>
               </Button>

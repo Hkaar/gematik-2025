@@ -50,10 +50,10 @@ export default function Footer() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-            <Card className="rounded-xs rounded-tl-2xl rounded-br-2xl bg-accent-foreground shadow-xl">
+            <Card className="rounded-xs rounded-tl-2xl border-0 rounded-br-2xl bg-secondary shadow-xl">
               <CardContent className="flex flex-col justify-center gap-2.5 flex-1">
                 <div className="flex items-center gap-2.5">
-                  <div className="bg-accent grid place-items-center rounded-xl p-1.5">
+                  <div className="bg-background grid place-items-center rounded-xl p-1.5">
                     <Phone />
                   </div>
                   <span>Phone</span>
@@ -61,10 +61,10 @@ export default function Footer() {
                 <span>+62 855 6674 9987</span>
               </CardContent>
             </Card>
-            <Card className="rounded-xs rounded-tl-2xl rounded-br-2xl shadow-xl">
+            <Card className="rounded-xs rounded-tl-2xl rounded-br-2xl border-0 bg-secondary shadow-xl">
               <CardContent className="flex flex-col justify-center gap-2.5 flex-1">
                 <div className="flex items-center gap-2.5">
-                  <div className="bg-accent grid place-items-center rounded-xl p-1.5">
+                  <div className="bg-background grid place-items-center rounded-xl p-1.5">
                     <Mail />
                   </div>
                   <span>Email</span>
@@ -76,7 +76,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-background/20 pt-8 text-background/70">
-          <p>&copy; 2025 Empower Youth. All rights reserved.</p>
+          <p>&copy; 2025 Gempar Ltd. All rights reserved.</p>
         </div>
       </div>
     </footer>

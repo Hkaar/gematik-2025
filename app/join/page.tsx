@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function JoinPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header active="/join" />
 
       <section className="flex items-center justify-center min-h-[calc(100vh-64px)] px-4 py-20">
         <div className="w-full max-w-md">
@@ -20,8 +20,9 @@ export default function JoinPage() {
               Join Our Community
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Be part of a global movement empowering youth to thrive in the era of disruption. Get exclusive access to
-              programs, mentorship, and resources.
+              Be part of a global movement empowering youth to thrive in the era
+              of disruption. Get exclusive access to programs, mentorship, and
+              resources.
             </p>
           </div>
 
@@ -36,7 +37,9 @@ export default function JoinPage() {
               { number: "1000+", label: "Success Stories" },
             ].map((item, i) => (
               <div key={i} className="text-center">
-                <p className="text-2xl font-bold text-primary mb-1">{item.number}</p>
+                <p className="text-2xl font-bold text-primary mb-1">
+                  {item.number}
+                </p>
                 <p className="text-xs text-muted-foreground">{item.label}</p>
               </div>
             ))}
