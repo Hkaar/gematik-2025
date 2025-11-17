@@ -11,17 +11,21 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 
+import { useLanguage } from "@/contexts/language-context";
+import { translations } from "@/lib/i18n";
+
 export default function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <footer className="bg-foreground text-background py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2.5">
-              <span className="font-bold text-2xl">Get in Touch</span>
-              <p className="text-background/70">
-                Empower yourself to thrive in the era of disruption.
-              </p>
+              <span className="font-bold text-2xl">{t.footer.title}</span>
+              <p className="text-background/70">{t.footer.tagline}</p>
             </div>
 
             <div className="flex gap-4">
@@ -76,7 +80,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-background/20 pt-8 text-background/70">
-          <p>&copy; 2025 Gempar Ltd. All rights reserved.</p>
+          <p>{t.footer.copyright}</p>
         </div>
       </div>
     </footer>

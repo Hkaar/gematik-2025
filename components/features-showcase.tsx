@@ -5,27 +5,31 @@ import { Card } from "@/components/ui/card";
 import { ChevronRight } from "lucide-react";
 import SlideUp from "./animation/slide-up";
 
+import { useLanguage } from "@/contexts/language-context";
+import { translations } from "@/lib/i18n";
+
 export default function FeaturesShowcase() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const features = [
     {
-      title: "Programs",
-      description:
-        "Comprehensive learning paths designed to build real-world skills",
+      title: t.features.programs.title,
+      description: t.features.programs.description,
       href: "/programs",
       color: "from-primary/20 to-primary/5",
       icon: "📚",
     },
     {
-      title: "Success Stories",
-      description:
-        "Inspiring journeys from youth who've transformed their futures",
+      title: t.features.stories.title,
+      description: t.features.stories.description,
       href: "/stories",
       color: "from-accent/20 to-accent/5",
       icon: "⭐",
     },
     {
-      title: "Resources",
-      description: "Tools, guides, and frameworks to accelerate your growth",
+      title: t.features.resources.title,
+      description: t.features.resources.description,
       href: "/resources",
       color: "from-secondary/20 to-secondary/5",
       icon: "📖",
@@ -37,11 +41,10 @@ export default function FeaturesShowcase() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-            Explore Our Offerings
+            {t.features.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to thrive in your journey of personal and
-            professional growth
+            {t.features.subtitle}
           </p>
         </div>
 
@@ -67,7 +70,9 @@ export default function FeaturesShowcase() {
                     </div>
 
                     <div className="inline-flex items-center text-primary group-hover:gap-2 gap-1 transition-all duration-300">
-                      <span className="font-semibold">Learn more</span>
+                      <span className="font-semibold">
+                        {t.features.learnMore}
+                      </span>
                       <ChevronRight size={16} />
                     </div>
                   </div>

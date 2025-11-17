@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-import Bot from "@/components/bots"
+import Bot from "@/components/bots";
+import { LanguageProvider } from "@/contexts/language-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <Bot />
+        <LanguageProvider>
+          {children}
+          <Bot />
+        </LanguageProvider>
+
         <Toaster richColors />
       </body>
     </html>

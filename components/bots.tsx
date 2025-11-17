@@ -4,6 +4,8 @@ import { SendIcon, XIcon } from "lucide-react";
 import React, { useState, useEffect, FormEvent } from "react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/language-context";
+import { translations } from "@/lib/i18n";
 
 interface Message {
   type: "user" | "bot";
@@ -16,10 +18,11 @@ const Bot = () => {
   const [userInput, setUserInput] = useState("");
   const [showPopup, setShowPopup] = useState(true);
 
+  const { language } = useLanguage();
+  const t = translations[language];
+
   useEffect(() => {
-    setMessages([
-      { type: "bot", content: "Hello! How can I assist you today?" },
-    ]);
+    setMessages([{ type: "bot", content: t.bot.start }]);
 
     const timer = setTimeout(() => {
       setShowPopup(false);
@@ -93,7 +96,7 @@ const Bot = () => {
     <div className="fixed bottom-4 right-4 z-9999">
       {showPopup && (
         <div className="absolute bottom-14 right-10 z-10 w-48 bg-blue-500 text-white px-4 py-2 rounded-xl rounded-br-none shadow-lg">
-          Hello! How can I assist you today?
+          <p>{t.bot.welcome}</p>
         </div>
       )}
 
