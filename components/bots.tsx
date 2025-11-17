@@ -21,6 +21,33 @@ const Bot = () => {
   const { language } = useLanguage();
   const t = translations[language];
 
+  const getBotResponseKey = (message: string): keyof typeof t.bot => {
+    const lowerCaseMsg = message.toLowerCase();
+
+    if (lowerCaseMsg.includes("hello") || lowerCaseMsg.includes("hi")) {
+      return "welcome";
+    }
+    if (lowerCaseMsg.includes("program") || lowerCaseMsg.includes("offering")) {
+      return "programs";
+    }
+    if (lowerCaseMsg.includes("join") || lowerCaseMsg.includes("community")) {
+      return "join";
+    }
+    if (
+      lowerCaseMsg.includes("mission") ||
+      lowerCaseMsg.includes("vision") ||
+      lowerCaseMsg.includes("purpose")
+    ) {
+      return "mission";
+    }
+
+    if (lowerCaseMsg.includes("help") || lowerCaseMsg.includes("assist")) {
+      return "start";
+    }
+
+    return "default";
+  };
+
   useEffect(() => {
     setMessages([{ type: "bot", content: t.bot.start }]);
 
@@ -29,7 +56,7 @@ const Bot = () => {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [t.bot.start]);
 
   const handleBotClick = () => {
     setIsChatOpen(!isChatOpen);
@@ -39,18 +66,11 @@ const Bot = () => {
     e.preventDefault();
 
     if (userInput.trim()) {
-      setMessages((prev) => [...prev, { type: "user", content: userInput }]);
+      const userMessage = userInput.trim();
+      setMessages((prev) => [...prev, { type: "user", content: userMessage }]);
 
-      let botResponse = "Sorry, I don't understand that.";
-      if (userInput.toLowerCase().includes("hello")) {
-        botResponse = "Hello! How can I assist you today?";
-      } else if (userInput.toLowerCase().includes("help")) {
-        botResponse =
-          "Let me know what you need help with.\n1. Account\n2. Website\n3. Services";
-      } else if (userInput.toLowerCase().includes("website")) {
-        botResponse =
-          "This website is designed to provide helpful tools and resources.";
-      }
+      const responseKey = getBotResponseKey(userMessage);
+      const botResponse = t.bot[responseKey];
 
       setMessages((prev) => [...prev, { type: "bot", content: botResponse }]);
 
@@ -66,20 +86,12 @@ const Bot = () => {
 
     setMessages((prev) => [
       ...prev,
-      { type: "bot", content: "Bot is typing..." },
+      { type: "bot", content: t.bot.typing }, // Placeholder will be overwritten
     ]);
 
     setTimeout(() => {
-      let botResponse = "Sorry, I don't understand that.";
-      if (templateMessage.toLowerCase().includes("hello")) {
-        botResponse = "Hello! How can I assist you today?";
-      } else if (templateMessage.toLowerCase().includes("help")) {
-        botResponse =
-          "Let me know what you need help with.\n1. What is Gempar\n2. Website\n3. How to use this website";
-      } else if (templateMessage.toLowerCase().includes("website")) {
-        botResponse =
-          "This website is designed to provide helpful tools and resources.";
-      }
+      const responseKey = getBotResponseKey(templateMessage);
+      const botResponse = t.bot[responseKey];
 
       setMessages((prev) => {
         const updatedMessages = [...prev];
@@ -141,22 +153,28 @@ const Bot = () => {
 
           <div className="flex gap-2 mb-3 flex-wrap">
             <button
-              onClick={() => handleTemplateMessage("What is this website for?")}
+              onClick={() => handleTemplateMessage(t.nav.programs)}
               className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-2 py-1 rounded text-xs transition-colors"
             >
-              Website
+              Programs
             </button>
             <button
-              onClick={() => handleTemplateMessage("Can you help me?")}
+              onClick={() => handleTemplateMessage("What is your mission?")}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-2 py-1 rounded text-xs transition-colors"
+            >
+              Mission
+            </button>
+            <button
+              onClick={() => handleTemplateMessage("How can I join?")}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-2 py-1 rounded text-xs transition-colors"
+            >
+              Join
+            </button>
+            <button
+              onClick={() => handleTemplateMessage("I need help")}
               className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-2 py-1 rounded text-xs transition-colors"
             >
               Help
-            </button>
-            <button
-              onClick={() => handleTemplateMessage("Hello")}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-2 py-1 rounded text-xs transition-colors"
-            >
-              Hello
             </button>
           </div>
 
