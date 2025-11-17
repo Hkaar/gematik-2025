@@ -72,7 +72,7 @@ const Bot = () => {
         botResponse = "Hello! How can I assist you today?";
       } else if (templateMessage.toLowerCase().includes("help")) {
         botResponse =
-          "Let me know what you need help with.\n1. Account\n2. Website\n3. Services";
+          "Let me know what you need help with.\n1. What is Gempar\n2. Website\n3. How to use this website";
       } else if (templateMessage.toLowerCase().includes("website")) {
         botResponse =
           "This website is designed to provide helpful tools and resources.";
@@ -91,14 +91,12 @@ const Bot = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-9999">
-      {/* Popup Message */}
       {showPopup && (
         <div className="absolute bottom-14 right-10 z-10 w-48 bg-blue-500 text-white px-4 py-2 rounded-xl rounded-br-none shadow-lg">
           Hello! How can I assist you today?
         </div>
       )}
 
-      {/* Bot Icon */}
       <div
         className={cn(
           "w-12 h-12 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-colors",
@@ -115,10 +113,8 @@ const Bot = () => {
         )}
       </div>
 
-      {/* Chat Box */}
       {isChatOpen && (
         <div className="absolute bottom-16 right-0 max-w-96 bg-white shadow-2xl rounded-lg p-4 z-50">
-          {/* Messages Container */}
           <div className="min-h-48 max-h-96 overflow-y-auto border-b border-gray-200 mb-4 flex flex-col gap-2">
             {messages.map((msg, index) => (
               <div
@@ -140,7 +136,6 @@ const Bot = () => {
             ))}
           </div>
 
-          {/* Template Buttons */}
           <div className="flex gap-2 mb-3 flex-wrap">
             <button
               onClick={() => handleTemplateMessage("What is this website for?")}
@@ -162,7 +157,6 @@ const Bot = () => {
             </button>
           </div>
 
-          {/* Input Form */}
           <form
             onSubmit={handleSendMessage}
             className="flex items-center gap-2"

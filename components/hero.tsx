@@ -93,7 +93,6 @@ export default function Hero() {
             </Button>
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
             {[
               { number: 500, numberLabel: "K", label: "Youth Empowered" },

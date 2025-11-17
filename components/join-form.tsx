@@ -22,18 +22,21 @@ export function JoinForm() {
       return;
     }
 
-    // Success!
     toast.success("Welcome! 🎉", {
-      description: "Check your email for confirmation and next steps to get started.",
+      description:
+        "Check your email for confirmation and next steps to get started.",
     });
-    
+
     setEmail("");
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-3">
+        <label
+          htmlFor="email"
+          className="block text-sm font-semibold text-foreground mb-3"
+        >
           Email Address
         </label>
         <div className="relative">
