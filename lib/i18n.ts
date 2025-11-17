@@ -135,6 +135,11 @@ export const translations = {
     bot: {
       welcome: "Hello, i'm GEMBOT anything i can do to help?",
       start: "Where do you want to start?",
+      typing: "Currently typing...",
+      programs: "We offer programs in Tech Bootcamp, Entrepreneurship, Creative Leadership, and Impact Innovation. Which one interests you most? Or you can ask 'What are your programs'?",
+      join: "To join, you can click 'Join the Movement' on our homepage and sign up with your email. We'll send you exclusive access and resources!",
+      mission: "Our mission is to equip the next generation with adaptability, creativity, and purpose to lead the way in a disruptive era. We provide the tools, network, and confidence to thrive.",
+      default: "Sorry, I'm just a simple bot right now. Try asking about 'programs', 'joining', or our 'mission'.",
     }
   },
   id: {
@@ -273,6 +278,11 @@ export const translations = {
     bot: {
       welcome: "Halo, aku GEMBOT! Ada yang bisa aku bantu?",
       start: "Kamu ingin mulai dari mana?",
+      typing: "Lagi mengetik...",
+      programs: "Kami menawarkan program di Tech Bootcamp, Akselerator Kewirausahaan, Kepemimpinan Kreatif, dan Inovasi Berdampak. Mana yang paling menarik bagi Anda? Atau Anda bisa bertanya 'Apa saja programnya'?",
+      join: "Untuk bergabung, Anda bisa klik 'Bergabung sekarang' di halaman utama kami dan mendaftar dengan email Anda. Kami akan mengirimkan akses eksklusif dan sumber daya!",
+      mission: "Misi kami adalah membekali generasi berikutnya dengan daya adaptasi, kreativitas, dan tujuan untuk memimpin di era gangguan. Kami menyediakan alat, jaringan, dan kepercayaan diri untuk berkembang.",
+      default: "Maaf, saat ini saya hanya bot sederhana. Coba tanyakan tentang 'program', 'bergabung', atau 'misi' kami.",
     }
   },
 }
